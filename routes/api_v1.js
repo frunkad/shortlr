@@ -3,8 +3,12 @@
  */
 const express = require('express')
 const config = require('../config.json')
-const secrets = require('../secrets')
-const route = express.Router()
+var secrets;
+try {
+    secrets = require('./../secrets.json');
+} catch (e) {
+    secrets = require('./../secrets-sample.json');
+}const route = express.Router()
 const models = require('./../utils/db').models
 
 const validUrl = require('../utils/validator').validUrl
